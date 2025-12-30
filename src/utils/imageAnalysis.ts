@@ -1,8 +1,7 @@
 import * as exifr from "exifr";
 
-/* ---------------------------------------
-   Helpers
---------------------------------------- */
+//image help
+
 function loadImage(file: File): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -12,9 +11,7 @@ function loadImage(file: File): Promise<HTMLImageElement> {
     });
 }
 
-/* ---------------------------------------
-   1. EXIF / Metadata Analysis
---------------------------------------- */
+//Metadeta analysis
 export async function analyzeExif(file: File) {
     let score = 0;
     const reasons: string[] = [];
@@ -62,9 +59,7 @@ export async function analyzeExif(file: File) {
     return { score, reasons };
 }
 
-/* ---------------------------------------
-   2. Pixel / Noise Heuristic Analysis
---------------------------------------- */
+//noise or pixel analysis
 export async function analyzePixels(file: File) {
     const img = await loadImage(file);
 
@@ -99,7 +94,7 @@ export async function analyzePixels(file: File) {
     let score = 0;
     const reasons: string[] = [];
 
-    // AI images are often "too smooth" (low variance) or have specific noise patterns
+   //logic to check ai images
     if (variance < 350) {
         score += 30;
         reasons.push("Unnaturally smooth pixel distribution");
@@ -117,9 +112,7 @@ export async function analyzePixels(file: File) {
     return { score, reasons };
 }
 
-/* ---------------------------------------
-   3. Final Combined Analysis
---------------------------------------- */
+
 export async function performDeepfakeAnalysis(file: File) {
     const exif = await analyzeExif(file);
     const pixel = await analyzePixels(file);

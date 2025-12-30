@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { getGeminiResponse } from "../utils/gemini";
 
-/* ---------------- Types ---------------- */
 
 interface Message {
   id: string;
@@ -23,7 +22,6 @@ interface Message {
   timestamp: Date;
 }
 
-/* ---------------- Quick Actions ---------------- */
 
 const quickActions = [
   "Someone is threatening me with screenshots",
@@ -32,7 +30,7 @@ const quickActions = [
   "I need to know what to do first",
 ];
 
-/* ---------------- Component ---------------- */
+
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -52,13 +50,11 @@ const Chat = () => {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
-  /* ---------------- Auto Scroll ---------------- */
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  /* ---------------- Send Message ---------------- */
 
   const handleSend = async (text?: string) => {
     const messageText = text || input.trim();
@@ -109,7 +105,6 @@ const Chat = () => {
     }
   };
 
-  /* ---------------- Enter Key ---------------- */
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -117,9 +112,6 @@ const Chat = () => {
       handleSend();
     }
   };
-
-  /* ---------------- Render ---------------- */
-
   return (
       <>
         <Helmet>

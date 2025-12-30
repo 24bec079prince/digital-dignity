@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Shield, Heart, ChevronDown, BookOpen, Lock, Phone, Sparkles, ListChecks } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import logo from "../layout/dig-dignity.png";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,19 +13,24 @@ import {
 
 const Header = () => {
   const navigate = useNavigate();
-
+  
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="relative">
-
+          <div className="relative w-9 h-9">
+            <img
+                src={logo}
+                alt="Digital Dignity Logo"
+                className="w-full h-full object-contain"
+            />
           </div>
           <span className="font-display font-semibold text-lg text-foreground">
-            Digital Dignity
-          </span>
+    Digital Dignity
+  </span>
         </Link>
-        
+
+
         <nav className="hidden md:flex items-center gap-1">
           {/* Get Help Dropdown */}
           <DropdownMenu>

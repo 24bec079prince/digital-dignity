@@ -1,4 +1,4 @@
-// src/lib/gemini.ts
+
 import { GoogleGenAI } from "@google/genai";
 
 export interface ChatMessage {
@@ -21,7 +21,7 @@ export async function getGeminiResponse(
         return "AI service is not configured properly.";
     }
 
-    // Build conversation context (last 10 messages)
+    // Build conversation context (last 5 messages)
     const conversation = messages
         .slice(-4)
         .map((m) => `${m.role.toUpperCase()}: ${m.content}`)
